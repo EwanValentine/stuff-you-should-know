@@ -5,10 +5,12 @@ import "fmt"
 var limit = 50
 
 func main() {
-	FizzBuzz(limit)
+	res := FizzBuzz(limit)
+	fmt.Println(res)
 }
 
-func FizzBuzz(limit int) {
+func FizzBuzz(limit int) []interface{} {
+	result := make([]interface{}, 0)
 	for i := 0; i < limit; i++ {
 		output := ""
 		if i%3 == 0 {
@@ -16,14 +18,16 @@ func FizzBuzz(limit int) {
 		}
 
 		if i%5 == 0 {
-			output += "Buzz "
+			output += "Buzz"
 		}
 
 		if output == "" {
-			fmt.Println(i)
+			result = append(result, i)
 			continue
 		}
 
-		fmt.Println(output)
+		result = append(result, output)
 	}
+
+	return result
 }
