@@ -2,28 +2,34 @@
 
 function LinkedList() {
   this.head = null
+  this._length = 0
 }
 
+function Node(data) {
+  this.data = data  
+  this.next = null
+}
 
 LinkedList.prototype.add = value => {
-  const node = {
-    value,
-    next: null,
-  }
+  const node = new Node(value)
+  let currentNode = this.head
 
-  // If there is no head set
-  // then set the new node as the head.
-  if (!this.head) {
+  if (!currentNode) {
     this.head = node
-    return
-  }
+    this._length++
 
-  let current = this.head
-  while (current.next) {
-    current = current.next
+    return node
   }
   
-  current.next = node
+  while (currentNode.next) {
+    currentNode = currentNode.next
+  }
+
+  currentNode.next = node
+
+  this._length++
+
+  return node
 }
 
 const list = new LinkedList()
