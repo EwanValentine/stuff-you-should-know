@@ -1,10 +1,18 @@
 // Linked Lists
 
+/** 
+ * LinkedList
+ */
 function LinkedList() {
   this.head = null
   this._length = 0
 }
 
+/**
+ * Node
+ *
+ * @param {Any?} data
+ */
 function Node(data) {
   this.data = data  
   this.next = null
@@ -54,9 +62,38 @@ LinkedList.prototype.add = function(value) {
   return node
 }
 
+/**
+ * find
+ *
+ * @param  {Number} position
+ * @return {Node}
+ */
+LinkedList.prototype.find = function(position) {
+  let currentNode = this.head
+  const length = this._length
+  let count = 0
+  let message = { failure: 'Node not found' }
+
+  // If the length of the tree is 0
+  // or the position is less than 1
+  // or if the position is greater than the length.
+  if (length === 0 || position < 1 || position > length) {
+    throw new Error(message.failure)
+  }
+
+  // Iterate through each node whilst the current
+  // position is less than the given position.
+  while (count < position) {
+    currentNode = currentNode.next
+    count++
+  }
+
+  return currentNode
+}
+
 const list = new LinkedList()
 list.add("Ewan")
 list.add("Peter")
 list.add("Valentine")
 
-console.log(list)
+console.log(list.find(1).data)
