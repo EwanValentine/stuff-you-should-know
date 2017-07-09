@@ -21,6 +21,8 @@ function Node(data) {
 /**
  * add 
  *
+ * Adds a new node into the list.
+ *
  * @param  {Any?} value
  * @return {Node}
  */
@@ -64,6 +66,10 @@ LinkedList.prototype.add = function(value) {
 
 /**
  * find
+ *
+ * Iterates over all of the nodes until 
+ * the given position, and returns the node
+ * in that position.
  *
  * @param  {Number} position
  * @return {Node}
