@@ -6,6 +6,7 @@ import (
 	"log"
 )
 
+// ILinkedList -
 type ILinkedList interface {
 	Add(interface{}) *Node
 	Find(int) *Node
@@ -19,6 +20,13 @@ type LinkedList struct {
 type Node struct {
 	data interface{}
 	next *Node
+}
+
+func NewLinkedList() *LinkedList {
+	return &LinkedList{
+		head:   nil,
+		length: 0,
+	}
 }
 
 func NewNode(data interface{}) *Node {
@@ -35,7 +43,7 @@ func (list *LinkedList) Add(data interface{}) *Node {
 
 	if currentNode == nil {
 		list.head = node
-		list.length += 1
+		list.length = list.length + 1
 
 		return node
 	}
@@ -46,7 +54,7 @@ func (list *LinkedList) Add(data interface{}) *Node {
 
 	currentNode.next = node
 
-	list.length += 1
+	list.length = list.length + 1
 
 	return node
 }
@@ -60,18 +68,24 @@ func (list *LinkedList) Find(position int) (*Node, error) {
 		return nil, errors.New("Node not found")
 	}
 
+	// Iterate through each node, until
+	// the node position matches the count
 	for count < position {
 		currentNode = currentNode.next
-		count += 1
+		count = count + 1
 	}
 
 	return currentNode, nil
 }
 
 func main() {
-	list := LinkedList{}
+	list := NewLinkedList()
 
-	list.Add("This is a test")
+	list.Add("Ewan")
+	list.Add("Peter")
+	list.Add("Valentine")
+
+	fmt.Println(list)
 
 	res, err := list.Find(1)
 
@@ -79,5 +93,5 @@ func main() {
 		log.Println(fmt.Sprintf("Error: %v", err))
 	}
 
-	fmt.Println(res.data)
+	fmt.Println(res)
 }

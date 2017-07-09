@@ -78,13 +78,12 @@ LinkedList.prototype.find = function(position) {
   let currentNode = this.head
   const length = this._length
   let count = 0
-  let message = { failure: 'Node not found' }
 
   // If the length of the tree is 0
   // or the position is less than 1
   // or if the position is greater than the length.
   if (length === 0 || position < 1 || position > length) {
-    throw new Error(message.failure)
+    throw new Error('Node not found')
   }
 
   // Iterate through each node whilst the current
@@ -97,9 +96,48 @@ LinkedList.prototype.find = function(position) {
   return currentNode
 }
 
+LinkedList.prototype.remove = function(position) {
+  let currentNode = this.head
+  const length = this._length
+  let count = 0
+  let deleted = null
+  
+  if (position < 0 || position > length) {
+    throw new Error('Not found')
+  }
+
+  if (position === 1) {
+    this.head = currentNode.next
+    deleted = currentNode
+    currentNode = null
+    this._length--
+
+    return deletedNode
+  }
+
+  if (count < position) {
+    beforeNodeToDelete = currentNode
+    nodeToDelete = currentNode.next
+    count++
+  }
+
+  beforeNodeToDelete.next = nodeToDelete.next
+  deleted = nodeToDelete
+  nodeToDelete = null
+  this._length--
+
+  return deleted
+}
+
 const list = new LinkedList()
 list.add("Ewan")
 list.add("Peter")
 list.add("Valentine")
 
 console.log(list.find(1).data)
+
+list.remove(2)
+
+console.log(list.find(2).data)
+
+console.log(list)

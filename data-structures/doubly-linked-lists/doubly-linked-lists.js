@@ -1,34 +1,40 @@
-// Linked Lists
-
-function LinkedList() {
+function DoublyLinkedList() {
+  this._length = 0
   this.head = null
+  this.tail = null
 }
 
+function Node(data) {
+  this.next = null
+  this.previous = null
+  this.data = data
+}
 
-LinkedLists.prototype.add = value => {
-  const node = {
-    value,
-    next: null,
-  }
+DoublyLinkedList.prototype.add = function(add) {
+  const node = new Node(value)
 
-  // If there is no head set
-  // then set the new node as the head.
-  if (!this.head) {
+  if (this._length) {
+    this.tail.next = node
+    node.previous = this.tail
+    this.tail = node
+  } else {
     this.head = node
-    return
+    this.tail = node
   }
 
-  let current = this.head
-  while (current.next) {
-    current = current.next
-  }
-  
-  current.next = node
+  this._length++
+
+  return node
 }
 
-const list = new LinkedList()
+DoublyLinkedList.prototype.remove = function(position) {}
+
+DoublyLinkedList.prototype.find = function(position) {}
+
+const list = new DoublyLinkedList()
+
 list.add("Ewan")
 list.add("Peter")
 list.add("Valentine")
 
-console.log(list)
+console.log(list.find(1).data)
