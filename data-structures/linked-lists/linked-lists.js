@@ -10,7 +10,7 @@ function Node(data) {
   this.next = null
 }
 
-LinkedList.prototype.add = value => {
+LinkedList.prototype.add = function(value) {
   const node = new Node(value)
   let currentNode = this.head
 
