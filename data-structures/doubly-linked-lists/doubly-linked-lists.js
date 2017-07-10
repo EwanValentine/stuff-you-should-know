@@ -10,7 +10,7 @@ function Node(data) {
   this.data = data
 }
 
-DoublyLinkedList.prototype.add = function(add) {
+DoublyLinkedList.prototype.add = function(value) {
   const node = new Node(value)
 
   if (this._length) {
